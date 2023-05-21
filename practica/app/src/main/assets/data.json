@@ -1,0 +1,19 @@
+{
+   "telephones": [
+      {
+         "name": "Samsung",
+         "price": 37210,
+         "isSelected": false
+      },
+      {
+         "name": "Nokia",
+         "price": 19800,
+         "isSelected": false
+      },
+      {
+         "name": "Samsung",
+         "price": 19800,
+         "isSelected": true
+      }
+   ]
+}

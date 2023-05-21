@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application2</string>
+    <string name="save">Save</string>
+    <string name="title_activity_my">MyActivity</string>
+</resources>

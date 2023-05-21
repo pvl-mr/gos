@@ -25,29 +25,39 @@ public class HashTable {
         System.out.println("");
     }
     // -------------------------------------------------------------
-    public int hashFunc(int key)
+
+    public int hashFunc1(int key)
     {
-        return key % arraySize; // Хеш-функция
+        return key % arraySize;
     }
-    public void insert(DataItem item) // Вставка элемента данных
+    // -------------------------------------------------------------
+    public int hashFunc2(int key)
+    {
+        // Возвращаемое значение отлично от нуля, меньше размера массива,
+        // функция отлична от хеш-функции 1
+        // Размер массива должен быть простым по отношению к 5, 4, 3 и 2
+        return 5 - key % 5;
+    }
+
+    public void insert(int key, DataItem item) // Вставка элемента данных
 // (Метод предполагает, что таблица не заполнена)
     {
-        int key = item.getKey(); // Получение ключа
-        int hashVal = hashFunc(key); // Хеширование ключа
+        int hashVal = hashFunc1(key); // Хеширование ключа
+        int stepSize = hashFunc2(key); // Вычисление смещения
 // Пока не будет найдена
-        while(hashArray[hashVal] != null && // пустая ячейка или -1,
+        while(hashArray[hashVal] != null && // пустая ячейка или -1
                 hashArray[hashVal].getKey() != -1)
         {
-            ++hashVal; // Переход к следующей ячейке
-            hashVal %= arraySize; // При достижении конца таблицы
-        } // происходит возврат к началу
+            hashVal += stepSize; // Прибавление смещения
+            hashVal %= arraySize; // Возврат к началу
+        }
         hashArray[hashVal] = item; // Вставка элемента
     }
     public DataItem delete(int key) // Удаление элемента данных
     {
-        int hashVal = hashFunc(key); // Хеширование ключа
-        while(hashArray[hashVal] != null) // Пока не будет найдена
-// пустая ячейка
+        int hashVal = hashFunc1(key); // Хеширование ключа
+        int stepSize = hashFunc2(key); // Вычисление смещения
+        while(hashArray[hashVal] != null) // Пока не найдена пустая ячейка
         { // Ключ найден?
             if(hashArray[hashVal].getKey() == key)
             {
@@ -55,23 +65,23 @@ public class HashTable {
                 hashArray[hashVal] = nonItem; // Удаление элемента
                 return temp; // Метод возвращает элемент
             }
-            ++hashVal; // Переход к следующей ячейке
-            hashVal %= arraySize; // При достижении конца таблицы
-        } // происходит возврат к началу
+            hashVal += stepSize; // Прибавление смещения
+            hashVal %= arraySize; // Возврат к началу
+        }
         return null; // Элемент не найден
     }
     public DataItem find(int key) // Поиск элемента с заданным ключом
 // (Метод предполагает, что таблица не заполнена)
     {
-        int hashVal = hashFunc(key); // Хеширование ключа
-        while(hashArray[hashVal] != null) // Пока не будет найдена
-// пустая ячейка
+        int hashVal = hashFunc1(key); // Хеширование ключа
+        int stepSize = hashFunc2(key); // Вычисление смещения
+        while(hashArray[hashVal] != null) // Пока не найдена пустая ячейка
         { // Ключ найден?
             if(hashArray[hashVal].getKey() == key)
-                return hashArray[hashVal]; // Да, вернуть элемент
-            ++hashVal; // Переход к следующей ячейке
-            hashVal %= arraySize; // При достижении конца таблицы
-        } // происходит возврат к началу
+                return hashArray[hashVal]; // Да, метод возвращает элемент
+            hashVal += stepSize; // Прибавление смещения
+            hashVal %= arraySize; // Возврат к началу
+        }
         return null; // Элемент не найден
     }
 

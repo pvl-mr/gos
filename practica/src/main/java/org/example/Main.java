@@ -7,23 +7,21 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws IOException
     {
+        int aKey;
         DataItem aDataItem;
-        int aKey, size, n, keysPerCell;
+        int size, n;
 // Ввод размеров
         System.out.print("Enter size of hash table: ");
         size = getInt();
         System.out.print("Enter initial number of items: ");
         n = getInt();
-        keysPerCell = 10; //задает отношение размеров диапазона ключей и массива.
-        // 10 - означает, что для таблицы с размером 20 значения ключей лежат в диапазоне от 0 до 200.
 // Создание таблицы
         HashTable theHashTable = new HashTable(size);
         for(int j=0; j<n; j++) // Вставка данных
         {
-            aKey = (int)(java.lang.Math.random() *
-                    keysPerCell * size);
+            aKey = (int)(java.lang.Math.random() * 2 * size);
             aDataItem = new DataItem(aKey);
-            theHashTable.insert(aDataItem);
+            theHashTable.insert(aKey, aDataItem);
         }
         while(true) // Взаимодействие с пользователем
         {
@@ -39,7 +37,7 @@ public class Main {
                     System.out.print("Enter key value to insert: ");
                     aKey = getInt();
                     aDataItem = new DataItem(aKey);
-                    theHashTable.insert(aDataItem);
+                    theHashTable.insert(aKey, aDataItem);
                     break;
                 case 'd':
                     System.out.print("Enter key value to delete: ");
@@ -51,9 +49,7 @@ public class Main {
                     aKey = getInt();
                     aDataItem = theHashTable.find(aKey);
                     if(aDataItem != null)
-                    {
                         System.out.println("Found " + aKey);
-                    }
                     else
                         System.out.println("Could not find " + aKey);
                     break;

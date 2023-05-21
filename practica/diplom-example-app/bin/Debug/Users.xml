@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UsersList>
+    <User>
+      <Name>warg</Name>
+      <Sex>2</Sex>
+      <Age>2</Age>
+    </User>
+    <User>
+      <Name>wefa</Name>
+      <Sex>1</Sex>
+      <Age>8</Age>
+    </User>
+    <User>
+      <Name>eeeee</Name>
+      <Sex>2</Sex>
+      <Age>2</Age>
+    </User>
+  </UsersList>
+</Users>

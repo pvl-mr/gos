@@ -1,88 +1,63 @@
 package org.example;
 
 public class HashTable {
-    private DataItem[] hashArray; // Массив ячеек хеш-таблицы
+    private SortedList[] hashArray; // Массив списков
     private int arraySize;
-    DataItem nonItem;
     // -------------------------------------------------------------
     public HashTable(int size) // Конструктор
     {
         arraySize = size;
-        hashArray = new DataItem[arraySize];
-        nonItem = new DataItem(-1); // Ключ удаленного элемента -1
+        hashArray = new SortedList[arraySize]; // Создание массива
+        for(int j=0; j<arraySize; j++) // Заполнение массива
+            hashArray[j] = new SortedList(); // списками
     }
     // -------------------------------------------------------------
     public void displayTable()
     {
-        System.out.print("Table: ");
-        for(int j=0; j<arraySize; j++)
+        for(int j=0; j<arraySize; j++) // Для каждой ячейки
         {
-            if(hashArray[j] != null)
-                System.out.print(hashArray[j].getKey() + " ");
-            else
-                System.out.print("** ");
+            System.out.print(j + ". "); // Вывод номера ячейки
+            hashArray[j].displayList(); // Вывод списка
         }
-        System.out.println("");
     }
-    // -------------------------------------------------------------
 
-    public int hashFunc1(int key)
+    public int hashFunc(int key) // Хеш-функция
     {
         return key % arraySize;
     }
-    // -------------------------------------------------------------
-    public int hashFunc2(int key)
-    {
-        // Возвращаемое значение отлично от нуля, меньше размера массива,
-        // функция отлична от хеш-функции 1
-        // Размер массива должен быть простым по отношению к 5, 4, 3 и 2
-        return 5 - key % 5;
-    }
 
-    public void insert(int key, DataItem item) // Вставка элемента данных
-// (Метод предполагает, что таблица не заполнена)
+    /*public static int hashFunc1(String key)
     {
-        int hashVal = hashFunc1(key); // Хеширование ключа
-        int stepSize = hashFunc2(key); // Вычисление смещения
-// Пока не будет найдена
-        while(hashArray[hashVal] != null && // пустая ячейка или -1
-                hashArray[hashVal].getKey() != -1)
+        int hashVal = 0;
+        int pow27 = 1; // 1, 27, 27*27 и т. д.
+        for(int j=key.length()-1; j>=0; j--) // Справа налево
         {
-            hashVal += stepSize; // Прибавление смещения
-            hashVal %= arraySize; // Возврат к началу
+            int letter = key.charAt(j) - 96; // Получение кода символа
+            hashVal += pow27 * letter; // Умножение на степень 27
+            pow27 *= 27; // Следующая степень 27
         }
-        hashArray[hashVal] = item; // Вставка элемента
-    }
-    public DataItem delete(int key) // Удаление элемента данных
+        return hashVal % arraySize;
+    }*/
+
+    // -------------------------------------------------------------
+    public void insert(Link theLink) // Вставка элемента
     {
-        int hashVal = hashFunc1(key); // Хеширование ключа
-        int stepSize = hashFunc2(key); // Вычисление смещения
-        while(hashArray[hashVal] != null) // Пока не найдена пустая ячейка
-        { // Ключ найден?
-            if(hashArray[hashVal].getKey() == key)
-            {
-                DataItem temp = hashArray[hashVal]; // Временное сохранение
-                hashArray[hashVal] = nonItem; // Удаление элемента
-                return temp; // Метод возвращает элемент
-            }
-            hashVal += stepSize; // Прибавление смещения
-            hashVal %= arraySize; // Возврат к началу
-        }
-        return null; // Элемент не найден
+        int key = theLink.getKey();
+        int hashVal = hashFunc(key); // Хеширование ключа
+        hashArray[hashVal].insert(theLink); // Вставка в позиции hashVal
     }
-    public DataItem find(int key) // Поиск элемента с заданным ключом
-// (Метод предполагает, что таблица не заполнена)
+    // -------------------------------------------------------------
+    public void delete(int key) // Удаление элемента
     {
-        int hashVal = hashFunc1(key); // Хеширование ключа
-        int stepSize = hashFunc2(key); // Вычисление смещения
-        while(hashArray[hashVal] != null) // Пока не найдена пустая ячейка
-        { // Ключ найден?
-            if(hashArray[hashVal].getKey() == key)
-                return hashArray[hashVal]; // Да, метод возвращает элемент
-            hashVal += stepSize; // Прибавление смещения
-            hashVal %= arraySize; // Возврат к началу
-        }
-        return null; // Элемент не найден
+        int hashVal = hashFunc(key); // Хеширование ключа
+        hashArray[hashVal].delete(key); // Удаление
+    }
+    // -------------------------------------------------------------
+    public Link find(int key) // Поиск элемента
+    {
+        int hashVal = hashFunc(key); // Хеширование ключа
+        Link theLink = hashArray[hashVal].find(key); // Поиск
+        return theLink; // Метод возвращает найденный элемент
     }
 
 }

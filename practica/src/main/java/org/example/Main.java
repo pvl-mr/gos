@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) throws IOException
     {
         int aKey;
-        DataItem aDataItem;
-        int size, n;
+        Link aDataItem;
+        int size, n, keysPerCell = 100;
 // Ввод размеров
         System.out.print("Enter size of hash table: ");
         size = getInt();
@@ -19,9 +19,10 @@ public class Main {
         HashTable theHashTable = new HashTable(size);
         for(int j=0; j<n; j++) // Вставка данных
         {
-            aKey = (int)(java.lang.Math.random() * 2 * size);
-            aDataItem = new DataItem(aKey);
-            theHashTable.insert(aKey, aDataItem);
+            aKey = (int)(java.lang.Math.random() *
+                    keysPerCell * size);
+            aDataItem = new Link(aKey);
+            theHashTable.insert(aDataItem);
         }
         while(true) // Взаимодействие с пользователем
         {
@@ -36,8 +37,8 @@ public class Main {
                 case 'i':
                     System.out.print("Enter key value to insert: ");
                     aKey = getInt();
-                    aDataItem = new DataItem(aKey);
-                    theHashTable.insert(aKey, aDataItem);
+                    aDataItem = new Link(aKey);
+                    theHashTable.insert(aDataItem);
                     break;
                 case 'd':
                     System.out.print("Enter key value to delete: ");
@@ -58,6 +59,7 @@ public class Main {
             }
         }
     }
+    //--------------------------------------------------------------
     public static String getString() throws IOException
     {
         InputStreamReader isr = new InputStreamReader(System.in);
@@ -65,7 +67,7 @@ public class Main {
         String s = br.readLine();
         return s;
     }
-    //--------------------------------------------------------------
+    //-------------------------------------------------------------
     public static char getChar() throws IOException
     {
         String s = getString();

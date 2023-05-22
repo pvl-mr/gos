@@ -4,6 +4,16 @@ document.getElementById("signInForm")
         const currentForm = event.target;
         const formData = new FormData(currentForm);
         const login = formData.get("login");
+        const password = formData.get("password");
+        if (login.length < 6 || password.length < 6) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+              })
+            return;
+        }
 
         fetch("groups.json") // https://time.ulstu.ru/api/1.0/groups
             //.then((data) => { return data.json(); })

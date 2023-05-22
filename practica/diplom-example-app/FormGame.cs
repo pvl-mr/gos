@@ -21,11 +21,6 @@ namespace diplom_example_app
             InitializeComponent();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            var m = new FormPlayer();
-            m.Show();
-        }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
@@ -47,13 +42,13 @@ namespace diplom_example_app
             games.Add(game);
 
         }
-
+/*
         private void игрокиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var m = new FormPlayer();
             m.Show();
         }
-
+*/
         private void buttonDeleteGame_Click(object sender, EventArgs e)
         {
             if (listViewGames.SelectedItems.Count == 1)

@@ -11,3 +11,15 @@ C:\Users\pavlo\source\repos\diplom-example-app\diplom-example-app\obj\Debug\dipl
 C:\Users\pavlo\source\repos\diplom-example-app\diplom-example-app\obj\Debug\diplom_example_app.FormGame.resources
 C:\Users\pavlo\source\repos\diplom-example-app\diplom-example-app\obj\Debug\diplom_example_app.FormPlayer.resources
 C:\Users\pavlo\source\repos\diplom-example-app\diplom-example-app\obj\Debug\diplom_example_app.SimpleExampleUsers.resources
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom-example-app.csproj.AssemblyReference.cache
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom-example-app.csproj.SuggestedBindingRedirects.cache
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom-example-app.exe
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom-example-app.pdb
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom_example_app.SimpleExampleUsers.resources
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom_example_app.FormGame.resources
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom_example_app.Properties.Resources.resources
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom-example-app.csproj.GenerateResource.cache
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\obj\Debug\diplom-example-app.csproj.CoreCompileInputs.cache
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\bin\Debug\diplom-example-app.exe.config
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\bin\Debug\diplom-example-app.exe
+C:\Users\pavlo\Desktop\gos\practica\diplom-example-app\bin\Debug\diplom-example-app.pdb

@@ -9,25 +9,25 @@ namespace diplom_example_app
     [Serializable]
     public class Users
     {
-        public List<Blog> BlogsList {  get; set; } = new List<Blog>();
+        public List<User> UserList {  get; set; } = new List<User>();
 
 
     }
 
     [Serializable]
-    public class Blog
+    public class User
     {
         public string Name { get; set; }
-        public string Author { get; set; }
-        public int Rate { get; set; }
+        public string Sex { get; set; }
+        public int Age { get; set; }
 
-        public Blog() { }
+        public User() { }
 
-        public Blog(string Name , string Sex, int Age)
+        public User(string Name , string Sex, int Age)
         {
             this.Name = Name;           
-            this.Author = Sex;
-            this.Rate = Age;
+            this.Sex = Sex;
+            this.Age = Age;
         }
 
     }

@@ -1,0 +1,40 @@
+1. Получить список всех игроков с их никнеймами:
+
+
+var players = gameList.SelectMany(game => game.Players.Select(player => new { Id = player.Id, Nickname = player.Nickname }));
+
+
+2. Получить список всех игроков, которые умерли в игре с id=1:
+
+
+var players = gameList.FirstOrDefault(game => game.Id == 1)?.Players.Where(player => player.DateDeath != null);
+
+
+3. Получить список всех игроков, которые выиграли игру с id=2:
+
+
+var players = gameList.FirstOrDefault(game => game.Id == 2)?.Players.Where(player => player.Score == 100);
+
+
+4. Получить список всех игроков, которые участвовали в игре с id=3:
+
+
+var players = gameList.FirstOrDefault(game => game.Id == 3)?.Players;
+
+
+5. Получить список всех игроков, которые участвовали в игре с названием "Мафия":
+
+
+var players = gameList.FirstOrDefault(game => game.GameName == "Мафия")?.Players;
+
+
+6. Получить список всех игроков, которые умерли в любой игре:
+
+
+var players = gameList.SelectMany(game => game.Players.Where(player => player.DateDeath != null));
+
+
+7. Получить список всех игроков, которые умерли в любой игре после определенной даты:
+
+
+var players = gameList.SelectMany(game => game.Players.Where(player => player.DateDeath != null && DateTime.Parse(player.DateDeath) > new DateTime(2022, 1, 1)));

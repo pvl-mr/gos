@@ -204,7 +204,6 @@
             this.игрокиToolStripMenuItem.Name = "игрокиToolStripMenuItem";
             this.игрокиToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.игрокиToolStripMenuItem.Text = "Игроки";
-            this.игрокиToolStripMenuItem.Click += new System.EventHandler(this.игрокиToolStripMenuItem_Click);
             // 
             // labelPLayerName
             // 

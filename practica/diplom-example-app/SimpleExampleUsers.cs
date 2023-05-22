@@ -35,13 +35,13 @@ namespace diplom_example_app
         {
             if (listView1.SelectedItems.Count == 1)
             {
-                Blog user = (Blog)listView1.SelectedItems[0].Tag;
+                User user = (User)listView1.SelectedItems[0].Tag;
 
                 if (user != null)
                 {
                     textBoxName.Text=user.Name;
-                    comboBox1.SelectedText = user.Author;
-                    numericUpDownAge.Value = user.Rate;
+                    comboBox1.SelectedText = user.Sex;
+                    numericUpDownAge.Value = user.Age;
                 }
             } 
             else if (listView1.SelectedItems.Count == 0)
@@ -52,7 +52,7 @@ namespace diplom_example_app
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            Blog user = new Blog(textBoxName.Text, comboBox1.SelectedText, (int)numericUpDownAge.Value);
+            User user = new User(textBoxName.Text, comboBox1.SelectedText, (int)numericUpDownAge.Value);
 
             ListViewItem listViewItem = new ListViewItem(user.Name); //отображаемая часть на форме
             listViewItem.Tag = user; //записать пользователя в listViewItem
@@ -81,12 +81,12 @@ namespace diplom_example_app
             {
                 if(item.Tag != null)
                 {
-                    users.BlogsList.Add((Blog)item.Tag);
+                    users.UserList.Add((User)item.Tag);
 
                 }
             }
             SerealizeXML(users);
-            users.BlogsList.Where(user => user.Author.Equals(2));
+            users.UserList.Where(user => user.Sex.Equals(2));
 
         }
 
@@ -104,7 +104,7 @@ namespace diplom_example_app
         {
             ClearInput();
             Users users = DeserealizeXML();
-            foreach(Blog user in users.BlogsList)
+            foreach(User user in users.UserList)
             {
                 ListViewItem listViewItem = new ListViewItem(user.Name); //отображаемая часть на форме
                 listViewItem.Tag = user; //записать пользователя в listViewItem

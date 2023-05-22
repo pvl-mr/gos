@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.myapplication.database.DbManager;
 import com.google.gson.Gson;
 
 
@@ -29,6 +30,10 @@ public class NewFragment extends Fragment {
     private SharedPreferences pref;
     private final String save_key = "save_key";
     Telephone tel;
+    private DbManager dbManager;
+    public NewFragment(DbManager dbManager) {
+        this.dbManager = dbManager;
+    }
 
     public NewFragment() {
         // Required empty public constructor
@@ -71,11 +76,29 @@ public class NewFragment extends Fragment {
 
         private void getListeners() {
             btnSave.setOnClickListener((view) -> {
+                /*Log.d("Index", (index==null)?"null":index.toString());
+                if (index == null) {
+                    names.add(getObj());
+                } else {
+                    names.set(index, getObj());
+                }
+
+                default_fragment.adapter.notifyDataSetChanged();
+                textBoxName.setText("");
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack();*/
+                if (dbManager != null) {
+                    dbManager.openDb();
+                    Telephone tel = getObj();
+                    dbManager.insertToDb(tel.getName(), tel.getPrice(), tel.isChecked());
+                    dbManager.closeDb();
+                }
                 Log.d("Index", (index==null)?"null":index.toString());
                 if (index == null) {
                     names.add(getObj());
                 } else {
                     names.set(index, getObj());
+
                 }
 
                 default_fragment.adapter.notifyDataSetChanged();

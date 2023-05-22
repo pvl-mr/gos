@@ -26,6 +26,7 @@ import androidx.fragment.app.FragmentTransaction;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.example.myapplication.database.DbManager;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -52,6 +53,7 @@ public class default_fragment extends Fragment {
     private SharedPreferences pref;
     private final String save_key = "save_key";
     View view;
+    private DbManager dbManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +62,10 @@ public class default_fragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         view = inflater.inflate(R.layout.fragment_default_fragment, container, false);
+        buttonSaveAll = view.findViewById(R.id.buttonSaveAll);
+
+        dbManager = new DbManager(getContext());
+        buttonSaveAll.setVisibility(View.GONE);
 
         // получаем элемент ListView
         namesList = view.findViewById(R.id.namesList);
@@ -94,7 +100,6 @@ public class default_fragment extends Fragment {
         buttonDelete = view.findViewById(R.id.buttonDelete);
         buttonElemInToast = view.findViewById(R.id.buttonElemInToast);
         buttonEdit = view.findViewById(R.id.buttonEdit);
-        buttonSaveAll = view.findViewById(R.id.buttonSaveAll);
         buttonGetAll = view.findViewById(R.id.buttonGetData);
         buttonImport = view.findViewById(R.id.buttonImport);
 
@@ -207,11 +212,14 @@ public class default_fragment extends Fragment {
     public void add() {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        NewFragment addFragment = new NewFragment();
+        NewFragment addFragment;
+
+        addFragment = new NewFragment(dbManager);
+
         fragmentTransaction.replace(R.id.default_fragment, addFragment, "tag");
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
-            }
+    }
 
     public void remove(){
         Log.d("size ---", selectedNames.size()+"");
@@ -237,33 +245,47 @@ public class default_fragment extends Fragment {
         Toast.makeText(view.getContext(), "Сохранено!", Toast.LENGTH_LONG).show();
     }
 
+//    private void getAll() {
+//        if (pref == null)
+//            return;
+//        Gson gson = new Gson();
+//        ArrayList<Telephone> telList= new ArrayList<>();
+//        Log.d("save-key ", save_key);
+//        Integer count = pref.getInt("save_key_count", 0);
+//        for (int i = 0; i < count; i++) {
+//            String data = pref.getString( save_key + i + "", "empty");
+//            telList.add(gson.fromJson(data, Telephone.class));
+//        }
+//        adapter = new ArrayAdapter(view.getContext(),
+//                android.R.layout.simple_list_item_multiple_choice, telList);
+//        namesList.setAdapter(adapter);
+//        names = telList;
+//        adapter.notifyDataSetChanged();
+//        Toast.makeText(view.getContext(), "Получено!", Toast.LENGTH_LONG).show();
+//        Log.d("telephone size ", telList.size()+"");
+//        for (Telephone telephone: telList) {
+//            Log.d("telephone ", telephone.toString());
+//        }
+//        Log.d("telephone ", "--------------------");
+//    }
+
     private void getAll() {
-        if (pref == null)
-            return;
-        Gson gson = new Gson();
-        ArrayList<Telephone> telList= new ArrayList<>();
-        Log.d("save-key ", save_key);
-        Integer count = pref.getInt("save_key_count", 0);
-        for (int i = 0; i < count; i++) {
-            String data = pref.getString( save_key + i + "", "empty");
-            telList.add(gson.fromJson(data, Telephone.class));
+        dbManager.openDb();
+        names = dbManager.getFromDb();
+        if (dbManager != null) {
+            Log.d("db manager", (dbManager.getFromDb() == null)?"null":"not null");
         }
+        dbManager.closeDb();
         adapter = new ArrayAdapter(view.getContext(),
-                android.R.layout.simple_list_item_multiple_choice, telList);
+                android.R.layout.simple_list_item_multiple_choice, names);
         namesList.setAdapter(adapter);
-        names = telList;
         adapter.notifyDataSetChanged();
         Toast.makeText(view.getContext(), "Получено!", Toast.LENGTH_LONG).show();
-        Log.d("telephone size ", telList.size()+"");
-        for (Telephone telephone: telList) {
-            Log.d("telephone ", telephone.toString());
-        }
-        Log.d("telephone ", "--------------------");
     }
 
     private void importData() {
         String jsonString;
-        try (InputStream is = getResources().getAssets().open("data.json")){
+        try (InputStream is = this.getResources().getAssets().open("data.json")){
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

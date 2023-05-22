@@ -4,18 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.myapplication2.default_fragment">
+    tools:context="com.example.myapplication.default_fragment">
 
-<!--    <ListView
+    <ListView
         android:id="@+id/namesList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:choiceMode="multipleChoice"
         android:textStyle="italic"
         android:textSize="48sp"
-        android:divider="#774455"
-        android:dividerHeight="@dimen/twodp">
-    </ListView>-->
+        android:divider="#774455">
+    </ListView>
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -33,24 +32,24 @@
         android:onClick="add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Найти" />
+        android:text="@string/button_search" />
     <Button
         android:id="@+id/buttonAdd"
         android:onClick="add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Добавить" />
+        android:text="@string/button_add" />
     <Button
         android:id="@+id/buttonEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Редактировать" />
+        android:text="@string/button_edit" />
 
     <Button
         android:id="@+id/buttonAllElem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Выбрать все элементы"
+        android:text="@string/button_select_all"
         android:onClick="selectAllElem"/>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -61,20 +60,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Сохранить всё"/>
+            android:text="@string/button_save_all"/>
 
         <Button
             android:id="@+id/buttonGetData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Получить всё" />
+            android:text="@string/button_get_all" />
         <Button
             android:id="@+id/buttonImport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Импорт" />
+            android:text="@string/button_import" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -84,21 +83,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Сбросить"
+            android:text="@string/button_reset"
             android:onClick="resetAllElem"/>
         <Button
             android:id="@+id/buttonElemInToast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Вывести"
+            android:text="@string/button_output"
             android:onClick="outputSelectElem"/>
         <Button
             android:id="@+id/buttonDelete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Удалить"
+            android:text="@string/button_delete"
             android:onClick="remove"/>
     </LinearLayout>
 

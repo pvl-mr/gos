@@ -1,5 +1,5 @@
-package com.example.myapplication2;
-import static com.example.myapplication2.default_fragment.names;
+package com.example.myapplication;
+import static com.example.myapplication.default_fragment.names;
 
 import android.content.Context;
 import android.content.SharedPreferences;

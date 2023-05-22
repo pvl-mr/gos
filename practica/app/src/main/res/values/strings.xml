@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">My Application2</string>
-    <string name="save">Save</string>
-    <string name="title_activity_my">MyActivity</string>
+    <string name="app_name">Моё приложение</string>
+    <string name="button_search">Найти</string>
+    <string name="button_add">Добавить</string>
+    <string name="button_edit">Редактировать</string>
+    <string name="button_select_all">Выбрать все элементы</string>
+    <string name="button_save_all">Сохранить всё</string>
+    <string name="button_get_all">Получить всё</string>
+    <string name="button_import">Импорт</string>
+    <string name="button_reset">Сбросить</string>
+    <string name="button_output">Вывести</string>
+    <string name="button_delete">Удалить</string>
 </resources>

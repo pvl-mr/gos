@@ -1,8 +1,9 @@
-package com.example.myapplication2;
+package com.example.myapplication;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,4 +19,6 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.default_fragment, fragment);
         ft.commit();
     }
+
+
 }

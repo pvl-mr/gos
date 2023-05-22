@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="button_search">Search</string>
+    <string name="button_add">Add</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_select_all">Select all</string>
+    <string name="button_save_all">Save all</string>
+    <string name="button_get_all">Get all</string>
+    <string name="button_import">Import</string>
+    <string name="button_reset">Reset</string>
+    <string name="button_output">Output</string>
+    <string name="button_delete">Delete</string>
+</resources>
